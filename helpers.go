@@ -15,8 +15,8 @@ import (
 	"image/png"
 	"io"
 	"os"
-	"path/filepath"
-	"strings"
+	//"path/filepath"
+	//"strings"
 
 	"golang.org/x/image/bmp"
 	"golang.org/x/image/tiff"
@@ -113,19 +113,20 @@ func Encode(w io.Writer, img image.Image, format Format) error {
 
 // Save saves the image to file with the specified filename.
 // The format is determined from the filename extension: "jpg" (or "jpeg"), "png", "gif", "tif" (or "tiff") and "bmp" are supported.
-func Save(img image.Image, filename string) (err error) {
+func Save(img image.Image, imageType string, filename string) (err error) {
 	formats := map[string]Format{
-		".jpg":  JPEG,
-		".jpeg": JPEG,
-		".png":  PNG,
-		".tif":  TIFF,
-		".tiff": TIFF,
-		".bmp":  BMP,
-		".gif":  GIF,
+		"jpg":  JPEG,
+		"jpeg": JPEG,
+		"png":  PNG,
+		"tif":  TIFF,
+		"tiff": TIFF,
+		"bmp":  BMP,
+		"gif":  GIF,
 	}
 
-	ext := strings.ToLower(filepath.Ext(filename))
-	f, ok := formats[ext]
+	//ext := strings.ToLower(filepath.Ext(filename))
+	//f, ok := formats[ext]
+	f, ok := formats[imageType]
 	if !ok {
 		return ErrUnsupportedFormat
 	}
